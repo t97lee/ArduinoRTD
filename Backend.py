@@ -1,3 +1,12 @@
+from pyfirmata import Arduino, util
+import time
+from jupyterplot import ProgressPlot
+
+board = Arduino('#PORT')
+it = util.Iterator(board)
+it.start()
+vol = board.get_pin("a:0:i")
+
 #variables for calculating the temperature
 voltage_source = 5
 R_known = 1000 #Value of the known resistor 
@@ -5,7 +14,6 @@ alpha = 0.00385 #temperature coefficient
 temp_ref = -5 #temperature reference
 R_ref = 1000 #resistance of RTD (part no. F2222-1000-A-100)
                                                                             
-#pp = ProgressPlot(x_lim=[0, ], y_lim=[20,-10]) #initializes the plot
 pp = ProgressPlot()
 
 while True:
